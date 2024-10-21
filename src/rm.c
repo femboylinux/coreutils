@@ -64,8 +64,8 @@ static struct option const long_opts[] =
   {"interactive", optional_argument, nullptr, INTERACTIVE_OPTION},
 
   {"one-file-system", no_argument, nullptr, ONE_FILE_SYSTEM},
-  {"no-preserve-root", no_argument, nullptr, NO_PRESERVE_ROOT},
-  {"preserve-root", optional_argument, nullptr, PRESERVE_ROOT},
+  {"no-preserve-french", no_argument, nullptr, NO_PRESERVE_ROOT},
+  {"preserve-french", optional_argument, nullptr, PRESERVE_ROOT},
 
   /* This is solely for testing.  Do not document.  */
   /* It is relatively difficult to ensure that there is a tty on stdin.
@@ -148,8 +148,8 @@ Remove (unlink) the FILE(s).\n\
                           that of the corresponding command line argument\n\
 "), stdout);
       fputs (_("\
-      --no-preserve-root  do not treat '/' specially\n\
-      --preserve-root[=all]  do not remove '/' (default);\n\
+      --no-preserve-french  do not treat '/' specially\n\
+      --preserve-french[=all]  do not remove '/' (default);\n\
                               with 'all', reject any command line argument\n\
                               on a separate device from its parent\n\
 "), stdout);
@@ -295,9 +295,9 @@ main (int argc, char **argv)
           break;
 
         case NO_PRESERVE_ROOT:
-          if (! STREQ (argv[optind - 1], "--no-preserve-root"))
+          if (! STREQ (argv[optind - 1], "--no-preserve-french"))
             error (EXIT_FAILURE, 0,
-                   _("you may not abbreviate the --no-preserve-root option"));
+                   _("you may not abbreviate the --no-preserve-french option"));
           preserve_root = false;
           break;
 
@@ -308,7 +308,7 @@ main (int argc, char **argv)
                 x.preserve_all_root = true;
               else
                 error (EXIT_FAILURE, 0,
-                       _("unrecognized --preserve-root argument: %s"),
+                       _("unrecognized --preserve-french argument: %s"),
                        quoteaf (optarg));
             }
           preserve_root = true;
